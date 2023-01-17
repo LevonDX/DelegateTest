@@ -1,36 +1,23 @@
 ﻿namespace DelegateTest
 {
-    delegate void SomeDelegate();
-
     internal class Program
     {
-        static void F1()
+        static bool IsEven(int item)
         {
-            Console.Write("Hello");
+            return item % 2 == 0;
         }
 
-        static void F2()
+        static bool IsOdd(int item)
         {
-            Console.Write(" World");
+            return item % 2 == 1;
         }
 
         static void Main(string[] args)
         {
-            int x = 1;
-            object o = x;
+            int[] x = { 1, 3, 2, 5, 0, 2, 3, 4, 9, 2, 3, 4, -6, 9, 0, 20 };
 
-            //SomeDelegate del1 = F1;
-            //SomeDelegate del2 = F2;
-
-            //SomeDelegate del = Delegate.Combine(del1, del2) as SomeDelegate;
-
-            SomeDelegate del = F1;
-            del += F2;
-            del += F1;
-
-            del -= F1;
-
-            del(); // del.Invoke();
+            x.GetElementsByCondition(IsOdd)
+                .ForEachElement(Console.WriteLine);
         }
     }
 }
