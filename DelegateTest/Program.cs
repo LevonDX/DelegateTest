@@ -1,4 +1,6 @@
-﻿namespace DelegateTest
+﻿using System.Net.Http.Headers;
+
+namespace DelegateTest
 {
     class Program
     {
@@ -9,16 +11,16 @@
 
             //array.GetElementsByCondition(IsDivThree);
 
-            int x = 10;
+            //array.GetElementsByCondition(delegate (int item)
+            //{
+            //    return item % 5 == 0;
 
-            array.GetElementsByCondition(delegate (int item) // հայտարարում (definition)
-            {
-                x++;
-                return item % 5 == 0;
+            //})
 
-            }).ForEachElement(Console.WriteLine);
+            array.GetElementsByCondition(item => item > 0)
+                .ForEachElement(Console.WriteLine);
 
-            Console.WriteLine($"x = {x}");
+            string[] strs = new string[10];
         }
     }
 }

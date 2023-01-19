@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace DelegateTest
 {
-    delegate bool Condition(int element);
-    delegate void SomeAction(int element);
+    // Func
+    // Action
+    // Predicate
 
     internal static class Extensions
     {
-        public static IEnumerable<int> GetElementsByCondition(this int[] array, Condition condition)
+        public static IEnumerable<T> GetElementsByCondition<T>(this T[] array, Predicate<T> condition)
         {
-            foreach(int element in array)
+            foreach(T element in array)
             {
                 if(condition(element))
                     yield return element;
@@ -42,7 +43,7 @@ namespace DelegateTest
             return newArray;
         }
 
-        public static void ForEachElement(this IEnumerable<int> array, SomeAction action)
+        public static void ForEachElement(this IEnumerable<int> array, Action<int> action)
         {
             foreach (int item in array)
             {
